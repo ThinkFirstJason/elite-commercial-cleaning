@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Elite Commercial Cleaning</title>
+<meta name="description" content="Elite Commercial Cleaning L.L.C. — early-morning and after-close commercial cleaning for businesses in Idaho Falls and surrounding areas.">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* Layout: the night shift. The page opens in the after-hours dark of a closed business
+     and steps into clean daylight sections below, the way a client walks in the next morning. */
+  :root{
+    --night:#08111F;      /* hero, header, footer ground */
+    --navy:#0F2645;       /* secondary dark surface */
+    --blue:#1857B8;       /* brand accent on light: 6.6:1 on white */
+    --sky:#9CC4FF;        /* brand accent on dark: 10.4:1 on night */
+    --paper:#F4F6F9;      /* cool off-white section ground */
+    --white:#FFFFFF;
+    --ink:#0C1626;        /* body text on light */
+    --muted:#465468;      /* secondary text on light: 7.6:1 on white, 7.0:1 on paper */
+    --steel:#B8C3D3;      /* secondary text on dark: 10.3:1 on night */
+    --line:#D3DAE4;
+    --line-dark:#22344F;
+    --font:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --g:clamp(20px,5vw,72px);
+    --max:1240px;
+    color-scheme:light;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+  body{background:var(--white);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+  .dark :focus-visible{outline-color:var(--sky)}
+  .wrap{max-width:var(--max);margin-inline:auto;padding-left:max(var(--g),env(safe-area-inset-left,0px));padding-right:max(var(--g),env(safe-area-inset-right,0px))}
+
+  h1,h2,h3{font-weight:800;line-height:1.05;letter-spacing:-0.025em;text-wrap:balance}
+  h2{font-size:clamp(34px,4.6vw,58px);font-weight:900;letter-spacing:-0.035em}
+  h3{font-size:22px;letter-spacing:-0.015em;line-height:1.2}
+  .label{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+  .dark .label{color:var(--sky)}
+  .lede{font-size:19px;line-height:1.55;color:var(--muted);max-width:56ch}
+  .dark .lede{color:var(--steel)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;font:700 16px/1 var(--font);letter-spacing:.01em;text-decoration:none;border:2px solid transparent;border-radius:3px;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+  .btn-primary{background:var(--blue);color:var(--white)}
+  .btn-primary:hover{background:#0F449A}
+  .dark .btn-primary{background:var(--white);color:var(--night)}
+  .dark .btn-primary:hover{background:var(--sky)}
+  .btn-line{border-color:currentColor;color:var(--ink)}
+  .dark .btn-line{color:var(--white);border-color:#5A6E8C}
+  .dark .btn-line:hover{border-color:var(--white)}
+
+  /* ---------- header ---------- */
+  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--night)}
+  .site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--night);border-bottom:1px solid var(--line-dark);color:var(--white)}
+  .site-header .wrap{display:flex;align-items:center;gap:32px;min-height:76px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
+  .brand img{height:52px;width:auto;mix-blend-mode:screen}
+  .brand span{display:flex;flex-direction:column;line-height:1}
+  .brand b{font-size:21px;font-weight:900;letter-spacing:.06em}
+  .brand small{font-size:10.5px;font-weight:700;letter-spacing:.2em;color:var(--sky);margin-top:4px}
+  .nav{display:flex;gap:28px;margin-left:auto}
+  .nav a{font-size:15px;font-weight:600;text-decoration:none;color:var(--steel);padding:6px 0;border-bottom:2px solid transparent}
+  .nav a:hover{color:var(--white);border-bottom-color:var(--sky)}
+  .head-cta{display:flex;align-items:center;gap:20px}
+  .head-phone{font-size:15px;font-weight:700;text-decoration:none;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .head-cta .btn{min-height:44px;padding:0 18px;font-size:15px}
+  @media (max-width:1000px){.nav{display:none}.head-cta{margin-left:auto}}
+  @media (max-width:560px){.head-phone{display:none}.brand small{display:none}.brand img{height:44px}}
+
+  /* ---------- hero ---------- */
+  .hero{background:var(--night);color:var(--white);position:relative;overflow:hidden}
+  .hero-photo{position:absolute;inset:0 0 0 38%;background:var(--navy)}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;mix-blend-mode:luminosity;opacity:.78}
+  .hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--night) 0%,rgba(8,17,31,.82) 22%,rgba(8,17,31,.15) 70%,rgba(8,17,31,.35) 100%)}
+  .hero .wrap{position:relative;padding-block:clamp(72px,11vw,150px) clamp(64px,9vw,120px)}
+  .hero h1{font-size:clamp(54px,9.4vw,132px);font-weight:900;letter-spacing:-0.045em;line-height:.92;margin:22px 0 30px}
+  .hero h1 span{display:block}
+  .hero h1 span:last-child{color:var(--sky)}
+  .hero .lede{color:#D4DCE8;font-size:clamp(18px,1.6vw,21px);max-width:46ch}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:40px}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:12px 40px;margin-top:64px;padding-top:24px;border-top:1px solid var(--line-dark);max-width:620px;font-size:15px;color:var(--steel)}
+  .hero-meta b{display:block;color:var(--white);font-size:16px;font-weight:700}
+  @media (max-width:760px){
+    .hero-photo{inset:0}
+    .hero-photo img{opacity:.45}
+    .hero-photo::after{background:linear-gradient(180deg,rgba(8,17,31,.7),var(--night) 92%)}
+  }
+
+  /* ---------- schedule band ---------- */
+  .shift{background:var(--navy);color:var(--white)}
+  .shift .wrap{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:clamp(28px,4vw,64px);padding-block:clamp(48px,6vw,80px)}
+  .shift h2{font-size:clamp(28px,3vw,38px)}
+  .shift-col{border-top:2px solid var(--sky);padding-top:20px;min-width:0}
+  .shift-col h3{color:var(--white);margin-bottom:10px}
+  .shift-col p{color:var(--steel);font-size:16.5px}
+  @media (max-width:860px){.shift .wrap{grid-template-columns:1fr}}
+
+  /* ---------- services ---------- */
+  .section{padding-block:clamp(80px,10vw,140px)}
+  .section-head{display:grid;grid-template-columns:1fr 1fr;gap:24px 64px;align-items:end;margin-bottom:clamp(48px,6vw,80px)}
+  .section-head .label{grid-column:1/-1}
+  @media (max-width:860px){.section-head{grid-template-columns:1fr}}
+
+  .discipline{display:grid;grid-template-columns:5fr 6fr;gap:clamp(32px,5vw,80px);align-items:center;padding-block:clamp(40px,5vw,64px);border-top:1px solid var(--line)}
+  .discipline:last-child{border-bottom:1px solid var(--line)}
+  .discipline:nth-child(even) .d-photo{order:2}
+  .d-photo{aspect-ratio:4/3;overflow:hidden;border-radius:2px;background:var(--paper);max-width:100%}
+  .d-photo img{width:100%;height:100%;object-fit:cover}
+  .d-body{min-width:0}
+  .d-body .label{color:var(--muted)}
+  .d-body h3{font-size:clamp(28px,3vw,38px);font-weight:800;letter-spacing:-0.03em;margin:10px 0 14px}
+  .d-body > p{color:var(--muted);max-width:52ch}
+  .svc-list{list-style:none;margin-top:28px;display:grid;grid-template-columns:1fr 1fr;column-gap:32px}
+  .svc-list li{padding:14px 0;border-bottom:1px solid var(--line);font-weight:600;font-size:17px;display:flex;justify-content:space-between;gap:12px}
+  .svc-list li:nth-child(-n+2){border-top:1px solid var(--line)}
+  @media (max-width:860px){
+    .discipline{grid-template-columns:1fr}
+    .discipline:nth-child(even) .d-photo{order:0}
+  }
+  @media (max-width:520px){.svc-list{grid-template-columns:1fr}.svc-list li:nth-child(2){border-top:0}}
+
+  /* ---------- programs ---------- */
+  .programs{background:var(--paper)}
+  .prog-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink)}
+  .prog{display:grid;grid-row:span 3;grid-template-rows:subgrid;align-content:start}
+  .prog{padding:28px 28px 32px 0;min-width:0}
+  .prog + .prog{padding-left:28px;border-left:1px solid var(--line)}
+  .prog h3{margin-bottom:6px}
+  .prog .for{font-size:15px;color:var(--muted);margin-bottom:22px}
+  .prog ul{list-style:none;display:grid;gap:0}
+  .prog li{padding:11px 0;border-top:1px solid var(--line);font-size:16px;line-height:1.4}
+  @media (max-width:1040px){
+    .prog-grid{grid-template-columns:1fr 1fr}
+    .prog:nth-child(3){padding-left:0;border-left:0}
+    .prog:nth-child(n+3){border-top:1px solid var(--line)}
+  }
+  @media (max-width:600px){
+    .prog-grid{grid-template-columns:1fr}
+    .prog,.prog + .prog{padding:28px 0;border-left:0}
+    .prog + .prog{border-top:1px solid var(--line)}
+  }
+
+  /* ---------- advantage ---------- */
+  .advantage{display:grid;grid-template-columns:5fr 7fr;gap:clamp(40px,6vw,96px);align-items:start}
+  .adv-photo{position:sticky;top:110px;aspect-ratio:3/4;overflow:hidden;border-radius:2px;max-width:100%}
+  .adv-photo img{width:100%;height:100%;object-fit:cover}
+  .adv-body{min-width:0}
+  .adv-body h2{margin:14px 0 22px}
+  .adv-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;margin-top:48px}
+  .adv{padding:26px 0 30px;border-top:1px solid var(--line)}
+  .adv h3{margin-bottom:10px}
+  .adv p{color:var(--muted);font-size:16.5px}
+  .standards{margin-top:44px;padding:28px 32px;background:var(--night);color:var(--white);border-radius:2px}
+  .standards h3{font-size:20px;margin-bottom:8px}
+  .standards p{color:var(--steel);font-size:16.5px;max-width:60ch}
+  @media (max-width:900px){.advantage{grid-template-columns:1fr}.adv-photo{position:static;aspect-ratio:16/10}}
+  @media (max-width:600px){.adv-grid{grid-template-columns:1fr}}
+
+  /* ---------- quote ---------- */
+  .quote{background:var(--night);color:var(--white)}
+  .quote .wrap{display:grid;grid-template-columns:4fr 7fr;gap:clamp(40px,6vw,96px);padding-block:clamp(80px,10vw,140px)}
+  .quote-intro{min-width:0}
+  .quote-intro h2{margin:14px 0 22px}
+  .direct{margin-top:48px;display:grid;gap:0}
+  .direct div{padding:20px 0;border-top:1px solid var(--line-dark)}
+  .direct dt{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--steel);margin-bottom:4px}
+  .direct dd{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}
+  .direct .email{font-size:17px}
+  .direct dd a{text-decoration:none}
+  .direct dd a:hover{color:var(--sky)}
+  .direct .note{font-size:15px;font-weight:500;color:var(--steel)}
+
+  form{background:var(--white);color:var(--ink);padding:clamp(24px,4vw,48px);border-radius:3px;display:grid;grid-template-columns:1fr 1fr;gap:22px 24px;min-width:0}
+  form h3{grid-column:1/-1;font-size:24px}
+  form .full{grid-column:1/-1}
+  .field{display:grid;gap:8px;min-width:0}
+  .field label{font-size:14px;font-weight:700}
+  .field label small{font-weight:500;color:var(--muted)}
+  input,select,textarea{font:500 16px/1.4 var(--font);color:var(--ink);background:var(--white);border:1.5px solid #8492A6;border-radius:3px;padding:13px 14px;width:100%;min-width:0}
+  input:hover,select:hover,textarea:hover{border-color:var(--ink)}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(24,87,184,.25)}
+  textarea{min-height:110px;resize:vertical}
+  fieldset{border:0;grid-column:1/-1;display:grid;gap:10px}
+  legend{font-size:14px;font-weight:700;margin-bottom:10px}
+  .checks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px 16px}
+  .checks label{display:flex;align-items:center;gap:10px;font-size:15.5px;font-weight:500;cursor:pointer;padding:6px 0}
+  .checks input{width:18px;height:18px;accent-color:var(--blue);flex-shrink:0}
+  .form-foot{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;padding-top:6px}
+  .form-foot p{font-size:14.5px;color:var(--muted);flex:1;min-width:220px}
+  .dark form .btn-primary{background:var(--blue);color:var(--white)}
+  .dark form .btn-primary:hover{background:#0F449A}
+  .dark form :focus-visible{outline-color:var(--blue)}
+  .form-status{grid-column:1/-1;font-size:15px;font-weight:600;color:var(--blue)}
+  @media (max-width:960px){.quote .wrap{grid-template-columns:1fr}}
+  @media (max-width:640px){form{grid-template-columns:1fr}.checks{grid-template-columns:1fr 1fr}}
+
+  /* ---------- footer ---------- */
+  .site-footer{background:var(--night);color:var(--steel);border-top:1px solid var(--line-dark);font-size:15px}
+  .site-footer .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 40px;padding-block:36px}
+  .site-footer .brand img{height:46px}
+  .site-footer .brand b{color:var(--white)}
+  .foot-links{display:flex;flex-wrap:wrap;gap:8px 28px}
+  .foot-links a{text-decoration:none}
+  .foot-links a:hover{color:var(--white)}
+</style>
+</head>
+<body>
+
+<header class="site-header dark">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Elite Commercial Cleaning, home">
+      <img src="img/logo.png" alt="" width="297" height="341">
+      <span><b>ELITE</b><small>COMMERCIAL CLEANING</small></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#facilities">Facilities</a>
+      <a href="#advantage">Why Elite</a>
+      <a href="#quote">Contact</a>
+    </nav>
+    <div class="head-cta">
+      <a class="head-phone" href="tel:+12083462282">(208) 346-2282</a>
+      <a class="btn btn-primary" href="#quote">Get a quote</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero dark">
+    <div class="hero-photo" aria-hidden="true"><img src="img/after-hours.jpg" alt=""></div>
+    <div class="wrap">
+      <p class="label">Commercial cleaning · Idaho Falls, ID</p>
+      <h1><span>Reliable.</span><span>Local.</span><span>Elite.</span></h1>
+      <p class="lede">Professional cleaning for businesses in Idaho Falls and the surrounding area. We clean early in the morning and after you close, so your team and your customers walk into a clean space every day.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#quote">Get a quote</a>
+        <a class="btn btn-line" href="#services">See our services</a>
+      </div>
+      <div class="hero-meta">
+        <div><b>Before open, after close</b>Work scheduled around your hours</div>
+        <div><b>Any type of business</b>Offices, dealerships, bars, warehouses</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shift dark" aria-labelledby="shift-h">
+    <div class="wrap">
+      <div>
+        <p class="label">How we schedule</p>
+        <h2 id="shift-h" style="margin-top:12px">We work while you&rsquo;re closed.</h2>
+      </div>
+      <div class="shift-col">
+        <h3>Early morning</h3>
+        <p>Floors, restrooms, glass and trash handled before your first employee arrives. You unlock the doors and the building is ready.</p>
+      </div>
+      <div class="shift-col">
+        <h3>Post-closing</h3>
+        <p>After the last customer leaves, we reset the space for tomorrow: sanitation, restocking and floor care, with no disruption to your business day.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services" aria-labelledby="svc-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">Services</p>
+        <h2 id="svc-h">Everything a commercial building needs kept clean.</h2>
+        <p class="lede">Ten core services, grouped by the work they cover. Book one, or combine them into a regular maintenance schedule built around your operation.</p>
+      </div>
+
+      <div class="disciplines">
+        <article class="discipline">
+          <div class="d-photo"><img src="img/office.jpg" alt="An open-plan office with rows of clean desks and cubicles" loading="lazy"></div>
+          <div class="d-body">
+            <p class="label">Corporate hygiene</p>
+            <h3>Workspace cleaning</h3>
+            <p>Cleaning routines for offices and customer-facing spaces, kept to a high standard of cleanliness so your business always looks professional.</p>
+            <ul class="svc-list">
+              <li>Commercial office cleaning</li>
+              <li>Dealership shining</li>
+              <li>Bar and restaurant sanitation</li>
+              <li>Window shining</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="discipline">
+          <div class="d-photo"><img src="img/floors.jpg" alt="A cleaner running an industrial vacuum across a polished tile floor" loading="lazy"></div>
+          <div class="d-body">
+            <p class="label">Surface care</p>
+            <h3>Floor maintenance</h3>
+            <p>Polishing and protective coatings for high-traffic commercial floors. We restore worn surfaces and keep them looking new between visits.</p>
+            <ul class="svc-list">
+              <li>Floor scrubbing</li>
+              <li>Buffing</li>
+              <li>Strip and wax</li>
+              <li>Pressure washing</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="discipline">
+          <div class="d-photo"><img src="img/glass.jpg" alt="A worker wiping down a glass partition in a commercial space" loading="lazy"></div>
+          <div class="d-body">
+            <p class="label">Specialized sanitation</p>
+            <h3>Janitorial and sanitation</h3>
+            <p>Antimicrobial treatment and deep sanitation for business environments, plus the day-to-day janitorial work that keeps a building running.</p>
+            <ul class="svc-list">
+              <li>Swamping duties</li>
+              <li>Restocking</li>
+              <li>Antimicrobial treatment</li>
+              <li>Any other janitorial needs</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section programs" id="facilities" aria-labelledby="fac-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">By facility</p>
+        <h2 id="fac-h">Elite care, tailored results.</h2>
+        <p class="lede">Different buildings need different protocols. Here is what a typical program covers in each type of facility we serve.</p>
+      </div>
+      <div class="prog-grid">
+        <div class="prog">
+          <h3>Corporate offices</h3>
+          <p class="for">Office suites, lobbies, conference rooms</p>
+          <ul>
+            <li>High-frequency touchpoint disinfection</li>
+            <li>HEPA-filtered floor restoration</li>
+            <li>Sanitary waste management</li>
+            <li>Environmental refreshing</li>
+          </ul>
+        </div>
+        <div class="prog">
+          <h3>Warehouses</h3>
+          <p class="for">Logistics, storage, loading docks</p>
+          <ul>
+            <li>Industrial machinery sanitation</li>
+            <li>Hazardous material containment</li>
+            <li>Large-scale warehouse surface treatment</li>
+            <li>Loading dock maintenance</li>
+          </ul>
+        </div>
+        <div class="prog">
+          <h3>Medical and clinical</h3>
+          <p class="for">Clinics, medical suites, labs</p>
+          <ul>
+            <li>Sterile environment verification</li>
+            <li>Cross-contamination prevention</li>
+            <li>Compliance-grade medical suite cleaning</li>
+            <li>Air-duct cleaning cycles</li>
+          </ul>
+        </div>
+        <div class="prog">
+          <h3>Post-construction</h3>
+          <p class="for">New builds, remodels, tenant move-ins</p>
+          <ul>
+            <li>Fine dust extraction</li>
+            <li>Surface pH neutralizing</li>
+            <li>Window and glass polishing</li>
+            <li>Debris removal</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="advantage" aria-labelledby="adv-h">
+    <div class="wrap advantage">
+      <div class="adv-photo"><img src="img/crew.jpg" alt="A cleaning technician wiping down a window in a bright office" loading="lazy"></div>
+      <div class="adv-body">
+        <p class="label">The Elite advantage</p>
+        <h2 id="adv-h">Clean you can measure, not just see.</h2>
+        <p class="lede">Tidy is the minimum. We bring commercial-grade equipment and a consistent system to every building we clean, and we check our own work.</p>
+        <div class="adv-grid">
+          <div class="adv">
+            <h3>Unwavering reliability</h3>
+            <p>The same sanitation protocol on every visit. You get a consistent result whether it&rsquo;s week one or year three.</p>
+          </div>
+          <div class="adv">
+            <h3>Technical hygiene experts</h3>
+            <p>Crews trained for complex facilities, from medical suites to warehouse floors, not just standard office routes.</p>
+          </div>
+          <div class="adv">
+            <h3>Precision equipment</h3>
+            <p>Industrial-grade machines and systematic auditing of the work, so problem areas get caught before you notice them.</p>
+          </div>
+          <div class="adv">
+            <h3>Systemized maintenance</h3>
+            <p>Cleaning schedules designed to fit your operation, set at the frequency your building actually needs.</p>
+          </div>
+        </div>
+        <div class="standards">
+          <h3>Measurable standards</h3>
+          <p>Every program is built on a written scope: what gets cleaned, how often, and to what standard. You always know what you&rsquo;re paying for.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote dark" id="quote" aria-labelledby="quote-h">
+    <div class="wrap">
+      <div class="quote-intro">
+        <p class="label">Get a quote</p>
+        <h2 id="quote-h">Tell us about your building.</h2>
+        <p class="lede">Send the basics and we&rsquo;ll get back to you with a quote. Prefer to talk it through? Call anytime.</p>
+        <dl class="direct">
+          <div>
+            <dt>Phone</dt>
+            <dd><a href="tel:+12083462282">(208) 346-2282</a></dd>
+            <dd class="note">Call anytime</dd>
+          </div>
+          <div>
+            <dt>Email</dt>
+            <dd class="email"><a href="mailto:Elitecommercialcleaningifid@gmail.com">Elitecommercialcleaningifid<wbr>@gmail.com</a></dd>
+          </div>
+          <div>
+            <dt>Based in</dt>
+            <dd>Idaho Falls, ID</dd>
+            <dd class="note">Serving Idaho Falls and surrounding areas</dd>
+          </div>
+        </dl>
+      </div>
+
+      <form id="quote-form" novalidate>
+        <h3>Request a quote</h3>
+        <div class="field">
+          <label for="q-name">Your name</label>
+          <input id="q-name" name="name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="q-business">Business name</label>
+          <input id="q-business" name="business" autocomplete="organization">
+        </div>
+        <div class="field">
+          <label for="q-phone">Phone</label>
+          <input id="q-phone" name="phone" type="tel" autocomplete="tel" required>
+        </div>
+        <div class="field">
+          <label for="q-email">Email</label>
+          <input id="q-email" name="email" type="email" autocomplete="email">
+        </div>
+
+        <fieldset>
+          <legend>Type of cleaning</legend>
+          <div class="checks">
+            <label><input type="checkbox" name="type" value="Office cleaning"> Office cleaning</label>
+            <label><input type="checkbox" name="type" value="Floor care"> Floor care</label>
+            <label><input type="checkbox" name="type" value="Windows"> Windows</label>
+            <label><input type="checkbox" name="type" value="Pressure washing"> Pressure washing</label>
+            <label><input type="checkbox" name="type" value="Bar / restaurant"> Bar / restaurant</label>
+            <label><input type="checkbox" name="type" value="Dealership"> Dealership</label>
+            <label><input type="checkbox" name="type" value="Warehouse"> Warehouse</label>
+            <label><input type="checkbox" name="type" value="Medical"> Medical</label>
+            <label><input type="checkbox" name="type" value="Post-construction"> Post-construction</label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="q-sqft">Square footage <small>(approx.)</small></label>
+          <input id="q-sqft" name="sqft" inputmode="numeric" placeholder="e.g. 4,500">
+        </div>
+        <div class="field">
+          <label for="q-freq">How often</label>
+          <select id="q-freq" name="frequency">
+            <option value="">Choose one</option>
+            <option>One-time</option>
+            <option>Daily</option>
+            <option>Several times a week</option>
+            <option>Weekly</option>
+            <option>Every two weeks</option>
+            <option>Monthly</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="q-location">Location</label>
+          <input id="q-location" name="location" placeholder="City or address">
+        </div>
+        <div class="field">
+          <label for="q-when">Preferred date and time</label>
+          <input id="q-when" name="when" placeholder="e.g. Weeknights after 9 pm">
+        </div>
+        <div class="field full">
+          <label for="q-notes">Anything else we should know <small>(optional)</small></label>
+          <textarea id="q-notes" name="notes"></textarea>
+        </div>
+        <div class="form-foot">
+          <button class="btn btn-primary" type="submit">Send request</button>
+          <p>This opens an email to us with your details filled in. Nothing is sent until you hit send.</p>
+        </div>
+        <p class="form-status" id="q-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer dark">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Elite Commercial Cleaning, back to top">
+      <img src="img/logo.png" alt="" width="297" height="341">
+      <span><b>ELITE</b><small>COMMERCIAL CLEANING</small></span>
+    </a>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="#services">Services</a>
+      <a href="#facilities">Facilities</a>
+      <a href="#advantage">Why Elite</a>
+      <a href="#quote">Get a quote</a>
+    </nav>
+    <p>&copy; 2026 Elite Commercial Cleaning L.L.C. &middot; Idaho Falls, ID</p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var form=document.getElementById('quote-form');
+    var status=document.getElementById('q-status');
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var name=form.name.value.trim(), phone=form.phone.value.trim();
+      if(!name||!phone){
+        status.textContent='Add your name and a phone number so we can reach you.';
+        (name?form.phone:form.name).focus();
+        return;
+      }
+      var types=[].slice.call(form.querySelectorAll('input[name=type]:checked')).map(function(i){return i.value}).join(', ');
+      var v=function(k){return form[k].value.trim()||'—'};
+      var body=[
+        'Name: '+name,
+        'Business: '+v('business'),
+        'Phone: '+phone,
+        'Email: '+v('email'),
+        '',
+        'Type of cleaning: '+(types||'—'),
+        'Square footage: '+v('sqft'),
+        'Frequency: '+v('frequency'),
+        'Location: '+v('location'),
+        'Preferred date/time: '+v('when'),
+        '',
+        'Notes: '+v('notes')
+      ].join('\n');
+      window.location.href='mailto:Elitecommercialcleaningifid@gmail.com?subject='+encodeURIComponent('Quote request – '+(form.business.value.trim()||name))+'&body='+encodeURIComponent(body);
+      status.textContent='Your email app should open with the request filled in. If it doesn’t, call (208) 346-2282.';
+    });
+  })();
+</script>
+</body>
+</html>
